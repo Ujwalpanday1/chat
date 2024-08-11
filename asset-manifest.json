@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Ujwalpanday1/chat/static/css/main.f3f56924.css",
-    "main.js": "/Ujwalpanday1/chat/static/js/main.466d5853.js",
+    "main.js": "/Ujwalpanday1/chat/static/js/main.9ee3323f.js",
     "static/js/225.106a57dd.chunk.js": "/Ujwalpanday1/chat/static/js/225.106a57dd.chunk.js",
     "static/js/14.42e042ab.chunk.js": "/Ujwalpanday1/chat/static/js/14.42e042ab.chunk.js",
     "static/js/892.87da54b4.chunk.js": "/Ujwalpanday1/chat/static/js/892.87da54b4.chunk.js",
@@ -12,7 +12,7 @@
     "static/media/avatar.jpg": "/Ujwalpanday1/chat/static/media/avatar.1360bed9da8958440802.jpg",
     "index.html": "/Ujwalpanday1/chat/index.html",
     "main.f3f56924.css.map": "/Ujwalpanday1/chat/static/css/main.f3f56924.css.map",
-    "main.466d5853.js.map": "/Ujwalpanday1/chat/static/js/main.466d5853.js.map",
+    "main.9ee3323f.js.map": "/Ujwalpanday1/chat/static/js/main.9ee3323f.js.map",
     "225.106a57dd.chunk.js.map": "/Ujwalpanday1/chat/static/js/225.106a57dd.chunk.js.map",
     "14.42e042ab.chunk.js.map": "/Ujwalpanday1/chat/static/js/14.42e042ab.chunk.js.map",
     "892.87da54b4.chunk.js.map": "/Ujwalpanday1/chat/static/js/892.87da54b4.chunk.js.map",
@@ -23,6 +23,6 @@
   },
   "entrypoints": [
     "static/css/main.f3f56924.css",
-    "static/js/main.466d5853.js"
+    "static/js/main.9ee3323f.js"
   ]
 }
