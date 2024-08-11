@@ -26,7 +26,7 @@ const Login = ({setUser}) => {
     e.preventDefault();
    
     try{
-      const response=await axios.post("http://localhost:5000/login",{username:email,password},{withCredentials: true})
+      const response=await axios.post("https://realtime-chatting-app-qnm1.onrender.com/login",{username:email,password},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
         setUser(true)
@@ -46,7 +46,7 @@ const Login = ({setUser}) => {
   const handleSignUp = async(e) => {
     e.preventDefault();
     try{
-      const response=await axios.post("http://localhost:5000/register",{username:email,password,fName,lName},{withCredentials: true})
+      const response=await axios.post("https://realtime-chatting-app-qnm1.onrender.com/register",{username:email,password,fName,lName},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
         setUser(true)

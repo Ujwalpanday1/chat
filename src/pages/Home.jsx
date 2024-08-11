@@ -3,7 +3,7 @@ import { loadChat, loadMsg, searchSuggestion } from '../services/apiServices';
 import { io } from 'socket.io-client';
 import avatar from '../assets/avatar.jpg';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://realtime-chatting-app-qnm1.onrender.com/');
 
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,9 +22,12 @@ const Home = () => {
     // Fetch user data only on component mount
     const fetchUserData = async () => {
       const userData = await loadChat();
+      if(userData){
       socket.emit('login', { userid: userData.user._id });
       setChatArray(userData.chatArray);
       setUser(userData.user);
+      }
+     
     };
 
     fetchUserData();
@@ -131,16 +134,16 @@ const Home = () => {
               </form>
             </div>
             <div className="main flex flex-row flex-grow w-full">
-              <div className="sidebar bg-gray-100 h-full w-1/4 p-4 flex flex-col  rounded-l-lg overflow-y-auto">
+              <div className="sidebar bg-gray-100 h-full w-1/3 sm:w-1/4 p-4 flex flex-col  rounded-l-lg overflow-y-auto">
                 <div className="sidebar-header mb-4 ">
                   <h2 className="text-gray-700 text-lg font-semibold">Contacts</h2>
                 </div>
                 <div className="flex-grow h-2 overflow-y-auto">
                   {chatArray.map((user) => (
-                    <div key={user._id} className="contact flex items-center mb-4 p-2 bg-white rounded-lg shadow-xl">
-                      <img src={avatar} alt="Avatar" className="rounded-full w-12 h-12" />
-                      <form className="flex-grow ml-4" onSubmit={(e) => { e.preventDefault(); selectContact(user); }}>
-                        <button type="submit" className="text-gray-800 font-semibold hover:text-blue-500 transition-colors">
+                    <div key={user._id} className="contact flex items-center mb-4 p-1 sm:p-2 bg-white rounded-lg shadow-xl">
+                      <img src={avatar} alt="Avatar" className="rounded-full w-4 h-4 sm:w-12 sm:h-12 " />
+                      <form className="flex-grow ml-1 sm:ml-4" onSubmit={(e) => { e.preventDefault(); selectContact(user); }}>
+                        <button type="submit" className="text-gray-800 font-semibold hover:text-blue-500 transition-colors text-xs sm:text-xl">
                           {user.fName} {user.lName}
                         </button>
                       </form>
@@ -148,7 +151,7 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-              <div id="chat-area" className=" bg-gradient-to-r from-gray-200 to-white p-6 rounded-r-lg flex flex-col flex-grow w-2 lg:mt-0">
+              <div id="chat-area" className=" bg-gradient-to-r from-gray-200 to-white p-6 rounded-r-lg flex flex-col flex-grow w-2/3 sm:w-3/4 lg:mt-0 ">
                 {selectedContact ? (
                   <div className='flex flex-grow flex-col '>
                   <p>Chat with: {selectedContact.fName}</p>
@@ -156,16 +159,16 @@ const Home = () => {
                     {msgData.map((msg)=>(
 
                         msg.sender === user._id?(
-                        <div key={msg._id} className='bg-gray-300 m-4 p-3 self-end rounded w-fit break-words max-w-[60%] ' >{msg.message}</div>
+                        <div key={msg._id} className='bg-gray-300 m-1 sm:m-4 text-xs sm:text-lg   p-1 sm:p-3 self-end rounded w-fit break-words max-w-[60%] ' >{msg.message}</div>
                         ):(
-                        <div key={msg._id} className='bg-gray-300 m-4 p-3  rounded w-fit break-words max-w-[60%] ' >{msg.message}</div>
+                        <div key={msg._id} className='bg-gray-300 m-1 sm:m-4 text-xs sm:text-lg   p-1 sm:p-3  rounded w-fit break-words max-w-[60%] ' >{msg.message}</div>
                         )
                 ))} 
                 <div ref={messagesEndRef}></div>
                   </div>
                   <form className="searchForm flex items-center relative mt-2 sm:mt-0 w-full" onSubmit={handleSend} id="searchForm">
                 <input
-                  className="p-2 grow rounded-l-lg border bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="p-2 grow w-20 text-xs sm:text-lg rounded-l-lg border bg-gray-200 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
                   type="text"
                   placeholder="Type your msg here"
                   value={typedMsg}
