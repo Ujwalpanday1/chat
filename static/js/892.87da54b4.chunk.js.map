@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/892.87da54b4.chunk.js","mappings":"mJAEA,MAMA,EANcA,KAEVC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,S","sources":["pages/Group.jsx"],"sourcesContent":["import React from 'react'\n\nconst Group = () => {\n  return (\n    <div>Group</div>\n  )\n}\n\nexport default Group"],"names":["Group","_jsx","children"],"sourceRoot":""}

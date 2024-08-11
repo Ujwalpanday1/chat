@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/95.a7d500a9.chunk.js","mappings":"iJAEA,MAMA,EANaA,KAETC,EAAAA,EAAAA,KAAA,OAAAC,SAAK,Q","sources":["pages/Chat.jsx"],"sourcesContent":["import React from 'react'\n\nconst Chat = () => {\n  return (\n    <div>Chat</div>\n  )\n}\n\nexport default Chat"],"names":["Chat","_jsx","children"],"sourceRoot":""}
