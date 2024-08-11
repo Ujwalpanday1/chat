@@ -2,7 +2,7 @@
   "name": "chat-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://<username>.github.io/<repository-name>",
+  "homepage": "https://ujwalpanday1.github.io/chat",
 
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
