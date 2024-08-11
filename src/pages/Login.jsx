@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-const Login = () => {
+
+const Login = ({setUser}) => {
   const [isLogin, setIsLogin] = useState(true);
 
   // State for login
@@ -10,23 +12,56 @@ const Login = () => {
   // State for signup
   const [fName, setFName] = useState('');
   const [lName,setLName]=useState('')
-
-
+  const [alertMsg,setAlertMsg]=useState('')
   
+
   const toggleLogin = () => {
     setIsLogin((prev) => !prev);
+    setAlertMsg('')
+    setEmail('')
+    setPassword('')
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async(e) => {
     e.preventDefault();
-    console.log("Logging in with:", { email, password });
-    // Handle login logic here
+   
+    try{
+      const response=await axios.post("http://localhost:5000/login",{username:email,password},{withCredentials: true})
+      const data=response.data;
+      if(response.status==200){
+        setUser(true)
+     
+      }
+    }
+    catch(err){
+      
+      if(err.response.status==401){
+        setAlertMsg(err.response.data.alertMsg)
+      }
+      else
+      setAlertMsg("Server not responding,Try again Later")
+    }
   };
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async(e) => {
     e.preventDefault();
-    console.log("Registering:", { fName,lName, email, password });
-    // Handle signup logic here
+    try{
+      const response=await axios.post("http://localhost:5000/register",{username:email,password,fName,lName},{withCredentials: true})
+      const data=response.data;
+      if(response.status==200){
+        setUser(true)
+     
+      }
+    
+    }
+    
+    catch(err){
+      if(err.response.status==401){
+        setAlertMsg(err.response.data.alertMsg)
+      }
+      else
+      setAlertMsg("Server not responding,Try again Later")
+    }
   };
 
   return (
@@ -36,6 +71,7 @@ const Login = () => {
           <>
             <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
             <form onSubmit={handleLogin}>
+              <label className='text-red-700 '>{alertMsg}</label>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
                 <input
@@ -71,6 +107,7 @@ const Login = () => {
             <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
             <form onSubmit={handleSignUp}>
               <div className="mb-4">
+              <label className='text-red-700 '>{alertMsg}</label>
                 <label className="block text-gray-700 text-sm font-bold mb-2">First Name</label>
                 <input
                   type="text"
