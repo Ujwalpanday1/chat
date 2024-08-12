@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { loadChat } from '../services/apiServices';
+const backendUri="https://realtime-chatting-app-qnm1.onrender.com/"
 
 const Login = ({setUser}) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -26,7 +27,7 @@ const Login = ({setUser}) => {
     e.preventDefault();
    
     try{
-      const response=await axios.post("https://realtime-chatting-app-qnm1.onrender.com/login",{username:email,password},{withCredentials: true})
+      const response=await axios.post(`${backendUri}login`,{username:email,password},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
         setUser(true)
@@ -46,7 +47,7 @@ const Login = ({setUser}) => {
   const handleSignUp = async(e) => {
     e.preventDefault();
     try{
-      const response=await axios.post("https://realtime-chatting-app-qnm1.onrender.com/register",{username:email,password,fName,lName},{withCredentials: true})
+      const response=await axios.post(`${backendUri}register`,{username:email,password,fName,lName},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
         setUser(true)
