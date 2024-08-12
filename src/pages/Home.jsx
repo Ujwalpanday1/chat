@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import avatar from '../assets/avatar.jpg';
 import LoadingPage from './LoadingPage';
 
-const socket = io('https://realtime-chatting-app-qnm1.onrender.com/');
+const socket = io('http://localhost:5000');
 
 const Home = ({setisVerified}) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,6 +30,8 @@ const Home = ({setisVerified}) => {
       }
       else if(userData){
       socket.emit('login', { userid: userData.user._id });
+      
+      
       setChatArray(userData.chatArray);
       setUser(userData.user);
       setLoading(false)
@@ -48,7 +50,7 @@ const Home = ({setisVerified}) => {
      
      socket.on('receivePrivateMsg', (data) => {
       
-      if (user&&(data.sender==selectedContact._id)) {
+      if (user&&selectedContact&&(data.sender==selectedContact._id)) {
 
           const newMessage = {
           receiver: user._id,
@@ -115,7 +117,7 @@ const Home = ({setisVerified}) => {
         <div className='bg-gradient-to-r from-gray-400 to-gray-200 flex justify-center items-center min-h-screen'>
           <div className="flex flex-col h-[85vh] bg-gradient-to-r from-gray-400 to-gray-200 rounded-lg shadow-[0_10px_20px_rgba(255,0,0,1)] p-6 w-full max-w-6xl">
             <div className="top bg-gradient-to-r from-gray-400 to-gray-200 p-4 rounded-t-lg flex justify-between items-center flex-col sm:flex-row">
-              <label className="text-white text-lg font-semibold">Welcome</label>
+              <label className="text-white text-lg font-semibold">Welcome {user.fName}</label>
               <form className="searchForm flex items-center relative mt-2" onSubmit={handleSearch} id="searchForm">
                 <input
                   className="p-2 rounded-l-lg bg-gray-100 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"

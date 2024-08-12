@@ -1,8 +1,7 @@
 
 
 import axios from "axios";
-
-const backendUri="https://realtime-chatting-app-qnm1.onrender.com/"
+const backendUri="http://localhost:5000/"
 const searchSuggestion=async(name)=>{
     try {
         const response = await axios.get(`${backendUri}getUser/${name}`);

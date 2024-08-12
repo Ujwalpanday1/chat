@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 import LoadingPage from './LoadingPage';
-const backendUri="https://realtime-chatting-app-qnm1.onrender.com/"
+const backendUri="http://localhost:5000/"
 
 const Login = ({setIsVerified}) => {
   
