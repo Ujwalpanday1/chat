@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import avatar from '../assets/avatar.jpg';
 import LoadingPage from './LoadingPage';
 
-const socket = io('http://localhost:5000');
+const socket = io('https://realtime-chatting-app-qnm1.onrender.com/');
 
 const Home = ({setisVerified}) => {
   const [searchTerm, setSearchTerm] = useState('');
