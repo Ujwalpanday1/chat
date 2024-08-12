@@ -36,7 +36,7 @@ const Login = ({setisVerified}) => {
       }
     }
     catch(err){
-      
+      console.log(err)
       if(err.response.status==401){
         setAlertMsg(err.response.data.alertMsg)
       }
