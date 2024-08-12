@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { lazy,useState,useEffect } from "react";
 import ProtectedRoutes from './components/auth/ProtectedRoutes';
-import Cookies from "js-cookie";
 import './tailwind.css'
 
 const Home = lazy(() => import("./pages/Home"));
@@ -18,33 +17,36 @@ const Chat = lazy(() => import("./pages/Chat"));
 function App() {
 
 
-const [user, setUser] = useState(false)
-
-
+const [isVerified, setisVerified] = useState(false)
 useEffect(() => {
-  const token =Cookies.get('token')
-  if (!token) {       
-    setUser(false)
-  } else {
-   
-    setUser(true);
-  }
+  // Fetch user data only on component mount
+  const fetchUserData = async () => {
+    const userData = await loadChat();
+    if(userData){
+      setisVerified(true)
+    }
+    else
+    setisVerified(false)
+  };
+
+  fetchUserData();
 }, []);
+  
 
   return (
     <Router>
       <Routes>
         {/* Protected Routes */}
-        <Route element={<ProtectedRoutes user={user} />}>
-          <Route path="/" element={<Home />} />
+        <Route element={<ProtectedRoutes isVerified={isVerified} />}>
+          <Route path="/" element={<Home setisVerified={setisVerified}/>} />
           <Route path="/chat/:chatId" element={<Chat />} />
           <Route path="/group" element={<Group />} />
         </Route>
 
         {/* Public Route */}
         <Route path="/login" element={
-          <ProtectedRoutes user={!user} redirect={"/"}>
-            <Login setUser={setUser} />
+          <ProtectedRoutes isVerified={!isVerified} redirect={"/"}>
+            <Login setUser={setisVerified} />
           </ProtectedRoutes>
         }/>
       </Routes>

@@ -5,7 +5,7 @@ import avatar from '../assets/avatar.jpg';
 
 const socket = io('https://realtime-chatting-app-qnm1.onrender.com/');
 
-const Home = () => {
+const Home = ({setisVerified}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [typedMsg, setTypedMsg] = useState('');
   const [selectedContact, setSelectedContact] = useState(null);
@@ -27,6 +27,8 @@ const Home = () => {
       setChatArray(userData.chatArray);
       setUser(userData.user);
       }
+      else
+      setisVerified(false)
      
     };
 
