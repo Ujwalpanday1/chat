@@ -15,15 +15,17 @@ const searchSuggestion=async(name)=>{
 }
 
 const loadChat=async()=>{
+  console.log("here")
   try{
     const response=await axios.get(`${backendUri}`,{withCredentials:true})
     const data=response.data;
     return data;
   }
   catch(err){
-    //make then reload again
-    return null
-    console.log(err)
+   
+     console.log(err)
+    return null;
+   
   }
 }
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { loadChat } from '../services/apiServices';
 const backendUri="https://realtime-chatting-app-qnm1.onrender.com/"
 
-const Login = ({setUser}) => {
+const Login = ({setisVerified}) => {
+  console.log("in login")
   const [isLogin, setIsLogin] = useState(true);
 
   // State for login
@@ -15,6 +15,7 @@ const Login = ({setUser}) => {
   const [lName,setLName]=useState('')
   const [alertMsg,setAlertMsg]=useState('')
   
+
 
   const toggleLogin = () => {
     setIsLogin((prev) => !prev);
@@ -30,7 +31,7 @@ const Login = ({setUser}) => {
       const response=await axios.post(`${backendUri}login`,{username:email,password},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
-        setUser(true)
+        setisVerified(true)
      
       }
     }
@@ -50,7 +51,7 @@ const Login = ({setUser}) => {
       const response=await axios.post(`${backendUri}register`,{username:email,password,fName,lName},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
-        setUser(true)
+        setisVerified(true)
      
       }
     
