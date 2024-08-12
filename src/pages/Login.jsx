@@ -30,9 +30,9 @@ const Login = ({setisVerified}) => {
     try{
       const response=await axios.post(`${backendUri}login`,{username:email,password},{withCredentials: true})
       const data=response.data;
+      console.log(response)
       if(response.status==200){
         setisVerified(true)
-     
       }
     }
     catch(err){
