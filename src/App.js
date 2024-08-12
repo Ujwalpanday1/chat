@@ -7,6 +7,7 @@ import {
 import { lazy,useState,useEffect } from "react";
 import ProtectedRoutes from './components/auth/ProtectedRoutes';
 import './tailwind.css'
+import { loadChat } from "./services/apiServices";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
