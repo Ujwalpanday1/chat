@@ -1,28 +1,26 @@
 {
   "files": {
     "main.css": "/chat/static/css/main.f3f56924.css",
-    "main.js": "/chat/static/js/main.892137ea.js",
-    "static/js/225.106a57dd.chunk.js": "/chat/static/js/225.106a57dd.chunk.js",
-    "static/js/14.42e042ab.chunk.js": "/chat/static/js/14.42e042ab.chunk.js",
+    "main.js": "/chat/static/js/main.c233379f.js",
+    "static/js/73.79d41013.chunk.js": "/chat/static/js/73.79d41013.chunk.js",
+    "static/js/14.314dbbe4.chunk.js": "/chat/static/js/14.314dbbe4.chunk.js",
     "static/js/892.87da54b4.chunk.js": "/chat/static/js/892.87da54b4.chunk.js",
     "static/js/95.a7d500a9.chunk.js": "/chat/static/js/95.a7d500a9.chunk.js",
     "static/js/453.1f4fc30a.chunk.js": "/chat/static/js/453.1f4fc30a.chunk.js",
-    "static/js/213.d4d0bc4c.chunk.js": "/chat/static/js/213.d4d0bc4c.chunk.js",
     "static/js/749.84b29d2a.chunk.js": "/chat/static/js/749.84b29d2a.chunk.js",
     "static/media/avatar.jpg": "/chat/static/media/avatar.1360bed9da8958440802.jpg",
     "index.html": "/chat/index.html",
     "main.f3f56924.css.map": "/chat/static/css/main.f3f56924.css.map",
-    "main.892137ea.js.map": "/chat/static/js/main.892137ea.js.map",
-    "225.106a57dd.chunk.js.map": "/chat/static/js/225.106a57dd.chunk.js.map",
-    "14.42e042ab.chunk.js.map": "/chat/static/js/14.42e042ab.chunk.js.map",
+    "main.c233379f.js.map": "/chat/static/js/main.c233379f.js.map",
+    "73.79d41013.chunk.js.map": "/chat/static/js/73.79d41013.chunk.js.map",
+    "14.314dbbe4.chunk.js.map": "/chat/static/js/14.314dbbe4.chunk.js.map",
     "892.87da54b4.chunk.js.map": "/chat/static/js/892.87da54b4.chunk.js.map",
     "95.a7d500a9.chunk.js.map": "/chat/static/js/95.a7d500a9.chunk.js.map",
     "453.1f4fc30a.chunk.js.map": "/chat/static/js/453.1f4fc30a.chunk.js.map",
-    "213.d4d0bc4c.chunk.js.map": "/chat/static/js/213.d4d0bc4c.chunk.js.map",
     "749.84b29d2a.chunk.js.map": "/chat/static/js/749.84b29d2a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f3f56924.css",
-    "static/js/main.892137ea.js"
+    "static/js/main.c233379f.js"
   ]
 }
