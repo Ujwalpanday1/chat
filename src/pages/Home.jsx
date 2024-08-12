@@ -2,6 +2,7 @@ import React, { useEffect, useState ,useRef} from 'react';
 import { loadChat, loadMsg, searchSuggestion } from '../services/apiServices';
 import { io } from 'socket.io-client';
 import avatar from '../assets/avatar.jpg';
+import LoadingPage from './LoadingPage';
 
 const socket = io('https://realtime-chatting-app-qnm1.onrender.com/');
 
@@ -14,6 +15,7 @@ const Home = ({setisVerified}) => {
   const [user, setUser] = useState(null);
   const [msgData, setMsgData] = useState([]);
   const messagesEndRef=useRef(null)
+  const [loading, setLoading] = useState(true);
   useEffect(()=>{
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   },[msgData])
@@ -22,14 +24,21 @@ const Home = ({setisVerified}) => {
     // Fetch user data only on component mount
     const fetchUserData = async () => {
       const userData = await loadChat();
-      if(userData){
+      
+      if(userData==="loadLoadig"){
+        setLoading(true);
+      }
+      else if(userData){
       socket.emit('login', { userid: userData.user._id });
       setChatArray(userData.chatArray);
       setUser(userData.user);
-      }
-      else
-      setisVerified(false)
+      setLoading(false)
      
+      }
+      else{
+        setisVerified(false)
+        setLoading(false)
+      }
     };
 
     fetchUserData();
@@ -69,7 +78,6 @@ const Home = ({setisVerified}) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log('Searching for:', searchTerm);
   };
 
   const handleSend = (e) => {
@@ -100,6 +108,8 @@ const Home = ({setisVerified}) => {
     setMsgData(data.messageArray);
     setSelectedContact(contact);
   };
+  if(loading==true)
+    return <LoadingPage/>
     
       return (
         <div className='bg-gradient-to-r from-gray-400 to-gray-200 flex justify-center items-center min-h-screen'>

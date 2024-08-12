@@ -21,10 +21,21 @@ function App() {
   useEffect(() => {
     const fetchUserData = async () => {
       const userData = await loadChat();
-      if (userData) {
-        setIsVerified(true);
+      if (userData==="loadLoadig")
+      {
+        
+        setLoading(true);
       }
-      setLoading(false);
+        else if(userData) {
+        setIsVerified(true);
+        setLoading(false);
+      }
+      else{
+      
+        setIsVerified(false)
+        setLoading(false);
+      }
+      
     };
 
     fetchUserData();
@@ -45,7 +56,11 @@ function App() {
         </Route>
 
         {/* Public Route */}
-        <Route path="/login" element={<Login setIsVerified={setIsVerified} />} />
+        <Route path="/login" element={
+          <ProtectedRoutes isVerified={!isVerified} redirect={"/"}>
+            <Login setIsVerified={setIsVerified} />
+          </ProtectedRoutes>
+        }/>
       </Routes>
     </Router>
   );

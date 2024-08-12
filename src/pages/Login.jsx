@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
+import LoadingPage from './LoadingPage';
 const backendUri="https://realtime-chatting-app-qnm1.onrender.com/"
 
-const Login = ({setisVerified}) => {
-  console.log("in login")
+const Login = ({setIsVerified}) => {
+  
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   // State for login
   const [email, setEmail] = useState('');
@@ -26,45 +29,63 @@ const Login = ({setisVerified}) => {
 
   const handleLogin = async(e) => {
     e.preventDefault();
-   
+    setLoading(true)
     try{
       const response=await axios.post(`${backendUri}login`,{username:email,password},{withCredentials: true})
       const data=response.data;
       console.log(response)
       if(response.status==200){
-        setisVerified(true)
+        setIsVerified(true)
+        setLoading(false)
       }
     }
     catch(err){
       console.log(err)
-      if(err.response.status==401){
+      if(err.response&&err.response.status==401){
+        
         setAlertMsg(err.response.data.alertMsg)
+        setLoading(false)
       }
-      else
-      setAlertMsg("Server not responding,Try again Later")
+      else{
+        setAlertMsg("Server not responding,Try again Later")
+        setTimeout(()=>{
+          setLoading(false)
+        },2000)
+      }
+      
     }
   };
 
   const handleSignUp = async(e) => {
     e.preventDefault();
+    setLoading(true)
     try{
       const response=await axios.post(`${backendUri}register`,{username:email,password,fName,lName},{withCredentials: true})
       const data=response.data;
       if(response.status==200){
-        setisVerified(true)
-     
+       
+        setIsVerified(true)
+        setLoading(false)
       }
     
     }
     
     catch(err){
-      if(err.response.status==401){
+      if(err.response&&err.response.status==401){
         setAlertMsg(err.response.data.alertMsg)
+        setLoading(false)
       }
-      else
-      setAlertMsg("Server not responding,Try again Later")
+      else{
+        setAlertMsg("Server not responding,Try again Later")
+        setTimeout(()=>{
+          setLoading(false)
+        },2000)
+      }
     }
   };
+  if(loading==true){
+    return <LoadingPage/>
+  }
 
   return (
     <div className="bg-gradient-to-r from-gray-200 to-white min-h-screen flex items-center justify-center">
